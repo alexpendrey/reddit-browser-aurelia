@@ -7,6 +7,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var paths = require('../paths');
 var compilerOptions = require('../babel-options');
 var assign = Object.assign || require('object.assign');
+var sass = require('gulp-sass');
 
 // transpiles changed es6 files to SystemJS format
 // the plumber() call prevents 'pipe breaking' caused
@@ -29,6 +30,35 @@ gulp.task('build-html', function () {
     .pipe(gulp.dest(paths.output));
 });
 
+// Next, we add a new task for building css.
+gulp.task('build-css', function() {
+
+  // We instruct gulp to pull the source from the path we specified
+  return gulp.src(paths.style)
+
+    // The plumber step will ensure that if we write syntactically invalid
+    // sass, even though the step won't run, the gulp task won't exit. This
+    // is helpful because it allows us to fix our syntax without having to
+    // restart the gulp watch task.
+    .pipe(plumber())
+
+    // The changed step will analyze which files have changed and require
+    // rebuilding.
+    .pipe(changed(paths.output, {extension: '.css'}))
+
+    // The sourcemaps step will automatically generate sourcemaps.
+    .pipe(sourcemaps.init())
+
+    // The sass step will compile the sass. We need to specify that we are
+    // using the indented syntax. This is not necessary when using scss.
+    .pipe(sass())
+
+    // And our last steps write the output and sourcemaps to the build
+    // destination. Recall from step 3 that this is dist/.
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(paths.output));
+});
+
 // this task calls the clean task (located
 // in ./clean.js), then runs the build-system
 // and build-html tasks in parallel
@@ -36,7 +66,7 @@ gulp.task('build-html', function () {
 gulp.task('build', function(callback) {
   return runSequence(
     'clean',
-    ['build-system', 'build-html'],
+    ['build-system', 'build-html', 'build-css'],
     callback
   );
 });
