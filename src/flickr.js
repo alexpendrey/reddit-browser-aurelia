@@ -2,24 +2,22 @@ import {inject} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-http-client';
 import {Reddit} from 'services/reddit';
 
-
+@inject(HttpClient, Reddit)
 export class Flickr{
-  static inject = [HttpClient, Reddit];
+  //static inject = [HttpClient, Reddit];
   heading = 'Flickr';
   images = [];
   url = 'http://api.flickr.com/services/feeds/photos_public.gne?tags=rainier&tagmode=any&format=json';
 
   constructor(http, reddit){
-    //this.http = http;
-    reddit.test();
-    console.time('flickr');
+    this.http = http;
+    this.reddit = reddit;
   }
 
   activate(){
-    //return this.http.jsonp(this.url).then(response => {
-    //  this.images = response.content.items;
-    //  console.timeEnd('flickr');
-    //});
+    this.reddit.getPopularSubs().then(response => {
+      console.log(response.content.data.children);
+    });
   }
 
   canDeactivate(){

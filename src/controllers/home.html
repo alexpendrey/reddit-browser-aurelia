@@ -1,0 +1,14 @@
+<template>
+  <section>
+    <h2>Reddit Home</h2>
+
+    <ul>
+      <li repeat.for="sub of subs">
+        <a href.bind="sub.href">
+          ${sub.name}
+        </a>
+
+      </li>
+    </ul>
+  </section>
+</template>
