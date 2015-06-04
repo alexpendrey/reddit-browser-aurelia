@@ -6,7 +6,8 @@ export class App {
     config.title = 'Aurelia';
     config.map([
       { route: ['','home'],  moduleId: './controllers/home', nav: true, title:'Welcome' },
-      { route: 'child-router', moduleId: './child-router', nav: true, title: 'Child Router'}
+      { route: 'child-router', moduleId: './child-router', nav: true, title: 'Child Router'},
+      { route: 'subreddit', moduleId: './controllers/subreddit', nav: false}
     ]);
 
     this.router = router;

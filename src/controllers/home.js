@@ -10,6 +10,9 @@ export class Home {
   activate() {
     this.reddit.getPopularSubs().then(response => {
       this.subs = response;
+    },
+    reject => {
+      console.error(reject);
     })
   }
 }
