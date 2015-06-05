@@ -3,7 +3,7 @@
     <h2>Subreddit for ${subreddit}</h2>
     <ul>
       <li repeat.for="post of posts">
-        ${post.title}
+        ${post.title} - <a href.bind="post.href">${post.num_comments} comments</a>
       </li>
     </ul>
   </section>

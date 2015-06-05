@@ -7,7 +7,8 @@ export class App {
     config.map([
       { route: ['','home'],  moduleId: './controllers/home', nav: true, title:'Welcome' },
       { route: 'child-router', moduleId: './child-router', nav: true, title: 'Child Router'},
-      { route: 'subreddit', moduleId: './controllers/subreddit', nav: false}
+      { route: 'subreddit', moduleId: './controllers/subreddit', nav: false},
+      { route: 'comments', moduleId: './controllers/comments', nav: false}
     ]);
 
     this.router = router;

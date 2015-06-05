@@ -40,12 +40,13 @@ export class Reddit {
   getSubreddit(subreddit) {
     var promise = new Promise((resolve, reject) => {
       var subUrl = this.url + this.config.subredditDetail.replace('${subreddit}', subreddit);
-      console.log('Getting: ' + subUrl);
       this.http.get(subUrl).then(response => {
         var subData = response.content.data.children;
         let posts = [];
         subData.forEach(post => {
-          posts.push(post.data);
+          let s = post.data;
+          s.href = '#/comments/' + s.subreddit + '/' + s.id;
+          posts.push(s);
         });
         resolve(posts);
       }, err => {
@@ -55,5 +56,8 @@ export class Reddit {
     return promise;
   }
 
+  getComments(commentId) {
+
+  }
 
 }
