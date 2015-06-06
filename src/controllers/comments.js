@@ -14,13 +14,12 @@ export class Comments {
     this.subreddit = subreddit;
 
     console.log('subreddit page ' + subreddit + ' comments ' + commentsId);
-    /*this.reddit.getComments(commentsId).then(response => {
+    this.reddit.getComments(commentsId, subreddit).then(response => {
         this.comments = response;
-        console.log(response);
       }, reject => {
         console.error(reject);
       }
-    );*/
+    );
 
 
   }

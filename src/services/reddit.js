@@ -56,8 +56,24 @@ export class Reddit {
     return promise;
   }
 
-  getComments(commentId) {
-
+  getComments(commentsId, subreddit) {
+    var promise = new Promise((resolve, reject) => {
+      var commentsUrl = this.url + this.config.comments.replace('${subreddit}', subreddit);
+      commentsUrl = commentsUrl.replace('${commentsId}', commentsId);
+      this.http.get(commentsUrl).then(response => {
+        var commentsData = response.content[1].data.children;
+        let comments = [];
+        commentsData.forEach(comment => {
+          let s = comment.data;
+          //s.href = '#/comments/' + s.subreddit + '/' + s.id;
+          comments.push(s);
+        });
+        resolve(comments);
+      }, err => {
+        reject(err);
+      });
+    });
+    return promise;
   }
 
 }
