@@ -25,8 +25,10 @@ export class Reddit {
         subData.forEach((sub) => {
           let s = sub.data;
           //Extend the object with custom properties:
-          s.name = sub.data.display_name;
-          s.href = '#/subreddit/' + sub.data.display_name;
+          s.name = s.display_name;
+          s.href = '#/subreddit/' + s.display_name;
+          //TODO: Handle null images better
+          s.header_img = s.header_img ? s.header_img : 'unknown.jpg';
           subreddits.push(s);
         });
         resolve(subreddits);

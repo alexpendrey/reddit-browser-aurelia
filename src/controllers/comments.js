@@ -16,6 +16,7 @@ export class Comments {
     console.log('subreddit page ' + subreddit + ' comments ' + commentsId);
     this.reddit.getComments(commentsId, subreddit).then(response => {
         this.comments = response;
+        console.info(response);
       }, reject => {
         console.error(reject);
       }
