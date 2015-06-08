@@ -1,9 +1,20 @@
 <template>
   <section>
     <h2>Subreddit for ${subreddit}</h2>
-    <ul>
-      <li repeat.for="post of posts">
-        ${post.title} - <a href.bind="post.href">${post.num_comments} comments</a>
+    <ul class="media-list">
+      <li class="media" repeat.for="post of posts">
+        <div class="media-left">
+          <a href.bind="post.url" target="_blank">
+            <img class="media-object" src.bind="post.thumbnail" alt="...">
+          </a>
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">
+            <a href.bind="post.url" target="_blank">${post.title}</a>
+          </h4>
+          ${post.domain}
+          <a href.bind="post.comments_href">${post.num_comments} comments</a>
+        </div>
       </li>
     </ul>
   </section>

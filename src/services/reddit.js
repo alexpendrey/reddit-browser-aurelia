@@ -47,7 +47,7 @@ export class Reddit {
         let posts = [];
         subData.forEach(post => {
           let s = post.data;
-          s.href = '#/comments/' + s.subreddit + '/' + s.id;
+          s.comments_href = '#/comments/' + s.subreddit + '/' + s.id;
           posts.push(s);
         });
         resolve(posts);
