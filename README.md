@@ -1,7 +1,7 @@
 # reddit-browser-aurelia
 
 This is a simple reddit browser using the [Aurelia](http://www.aurelia.io) Framework.
-It is based on the [Aurelia Skeleton Navigaton](https://github.com/aurelia/skeleton-navigation) project, so it uses Gulp to build ES6 cod with the Babel compiler. 
+It is based on the [Aurelia Skeleton Navigaton](https://github.com/aurelia/skeleton-navigation) project, so it uses Gulp to build ES6 code with the Babel compiler. 
 
 You can see it in action [here](http://alexpendrey.github.io/reddit-browser-aurelia/)
 
