@@ -1,0 +1,18 @@
+<template>
+  <section>
+    <h2>Reddit Home</h2>
+
+    <div class="panel panel-default" repeat.for="sub of subs">
+      <div class="panel-heading">
+        <h3 class="panel-title"><a href.bind="sub.href">${sub.title} - r/${sub.name}</a></h3>
+      </div>
+        <div class="panel-body">
+          <a href.bind="sub.href">
+            <img src.bind="sub.header_img">
+          </a>
+          ${sub.public_description}
+        </div>
+    </div>
+
+  </section>
+</template>
