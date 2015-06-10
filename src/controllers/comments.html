@@ -1,9 +1,18 @@
 <template>
   <section>
     <h2>Comments for ${commentsId} in ${subreddit}</h2>
-    <ul>
+    <ul class="comments-list">
       <li repeat.for="comment of comments">
-        ${comment.body}
+        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <a href="#">${comment.author} </a>
+        <strong>${comment.score} points</strong>
+        <ul><li>
+          ${comment.body}
+        </li></ul>
+          <!--<compose
+            model.bind="comment.replies"
+            view-model="controllers/subcomments">
+          </compose>-->
       </li>
     </ul>
   </section>
